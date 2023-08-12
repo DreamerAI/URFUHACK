@@ -1,5 +1,6 @@
 export type UserModel = {
     id: number;
+    description:string;
     email: string;
     fio: string;
     last_access: Date;

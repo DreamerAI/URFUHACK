@@ -9,7 +9,7 @@ export const Navbar = () => {
     };
 
     return (
-        <nav className=" p-4 sticky">
+        <nav className="sticky top-0 z-10 mb-10">
             <div className="flex place-content-end md:hidden">
                 <button onClick={handleToggle}>
                     <svg
@@ -32,11 +32,11 @@ export const Navbar = () => {
                             />
                         )}
                     </svg>
-                </button>
-            </div>
+                </ button>
+            </div >
 
             {/* Desktop Navigation */}
-            <div className={`md:flex ${isOpen ? 'flex flex-col place-content-start' : 'hidden justify-around'}`}>
+            < div className={`md:flex ${isOpen ? 'flex flex-col place-content-start' : 'hidden justify-around'}`}>
                 <Link to="/me" className={`flex py-4 ${isOpen ? 'border-b' : ''}`}>
                     Главная
                 </Link>
@@ -46,16 +46,16 @@ export const Navbar = () => {
                 <a href="#" className={`flex py-4 ${isOpen ? 'border-b' : ''}`}>
                     Озвучка текста
                 </a>
-                <a href="#" className={`flex py-4 ${isOpen ? 'border-b' : ''}`}>
+                <Link to="/sl2text" className={`flex py-4 ${isOpen ? 'border-b' : ''}`}>
                     Перевод и озвучка жестов
-                </a>
+                </Link>
                 <a href="#" className={`flex py-4 ${isOpen ? 'border-b' : ''}`}>
                     Изучение языка жестов
                 </a>
                 <a href="#" className={`flex py-4 ${isOpen ? 'border-b' : ''}`}>
                     Настройки
                 </a>
-            </div>
-        </nav>
+            </div >
+        </nav >
     );
 };

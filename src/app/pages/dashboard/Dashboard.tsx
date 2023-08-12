@@ -80,8 +80,8 @@ export const Dashboard = () => {
                 <span>Отсканируй меня для начала чата!</span>
                 <img src="" alt="" />
             </div>
-            <div onClick={async () => await createQrCode()} className="flex items-center flex-col gap-9">
-                {qrCode ? <QRCode size={150} value={qrCode} className="flex" /> : <div className="flex justify-center items-center w-36 h-36 bg-gray-300">
+            <div className="flex items-center flex-col gap-9">
+                {qrCode ? <QRCode size={150} value={qrCode} className="flex" /> : <div onClick={async () => await createQrCode()} className="flex justify-center items-center w-36 h-36 bg-gray-300">
                     <span>Нажмите чтобы создать QR-приглашение</span>
                 </div>
                 }

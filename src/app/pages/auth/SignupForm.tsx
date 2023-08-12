@@ -15,6 +15,7 @@ export const SignupForm = () => {
         fio: "",
         email: "",
         password: "",
+        description: "",
         last_access: new Date(Date.now()),
     });
 
