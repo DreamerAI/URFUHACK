@@ -1,9 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "../../state/store";
-import { setUserToken } from "../../state/reducers";
 import { UserModel } from "../../@api/models";
 import { configureHeaders } from "../../shared/utils/configureHeaders";
 import { fetchData } from "../../shared/utils/fetchData";
@@ -37,20 +36,23 @@ export const Conversation = () => {
 
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
-        const accessToken = urlParams.get('access_token') || userToken;
+        const accessToken = urlParams.get('access_token') ?? userToken ?? '';
 
         getCurrentUser(accessToken);
+        // @ts-ignore
         getConversation(accessToken, id);
+    }, [id, userToken]);
 
-    }, []);
 
     const sendMessage = async () => {
         try {
             const urlParams = new URLSearchParams(window.location.search);
             const accessToken = urlParams.get('access_token') || userToken;
+            // @ts-ignore
             const config = configureHeaders(accessToken);
             const response = await axios.post(`http://larek.itatmisis.ru:4000/conversation/${id}`, newMessage, config);
             console.log(response.data);
+            // @ts-ignore
             getConversation(accessToken, id);
             setNewMessage('');
         } catch (error) {
