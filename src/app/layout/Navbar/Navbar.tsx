@@ -40,18 +40,18 @@ export const Navbar = () => {
                 <Link to="/me" className={`flex py-4 ${isOpen ? 'border-b' : ''}`}>
                     Главная
                 </Link>
-                <a href="#" className={`flex py-4 ${isOpen ? 'border-b' : ''}`}>
-                    Словарь
-                </a>
-                <a href="#" className={`flex py-4 ${isOpen ? 'border-b' : ''}`}>
-                    Озвучка текста
-                </a>
+                <Link to="/conversation" className={`flex py-4 ${isOpen ? 'border-b' : ''}`}>
+                    Чаты
+                </Link>
+                <Link to="/dictionary" className={`flex py-4 ${isOpen ? 'border-b' : ''}`}>
+                    Слова
+                </Link>
                 <Link to="/sl2text" className={`flex py-4 ${isOpen ? 'border-b' : ''}`}>
                     Перевод и озвучка жестов
                 </Link>
-                <a href="#" className={`flex py-4 ${isOpen ? 'border-b' : ''}`}>
-                    Изучение языка жестов
-                </a>
+                <Link to="/tovoice" className={`flex py-4 ${isOpen ? 'border-b' : ''}`}>
+                    Озвучка текста
+                </Link>
                 <a href="#" className={`flex py-4 ${isOpen ? 'border-b' : ''}`}>
                     Настройки
                 </a>

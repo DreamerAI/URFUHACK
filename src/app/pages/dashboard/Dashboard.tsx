@@ -8,13 +8,34 @@ import { Link } from "react-router-dom";
 import QRCode from "react-qr-code";
 
 export const Dashboard = () => {
-    const [voiceText, setVoiceText] = useState("");
+
+    const user = useSelector((state: RootState) => state.userSlice.user);
+    const [voiceText, setVoiceText] = useState(user?.description || "");
     const [conversationData, setConversationData] = useState<ConversationModel | null>(null);
 
 
     const [qrCode, setQrCode] = useState("");
 
     const userToken = useSelector((state: RootState) => state.userSlice.accessToken);
+
+    const updateProfile = async () => {
+        try {
+            const response = await axios.put(
+                "http://larek.itatmisis.ru:4000/users/me",
+                {
+                    description: voiceText,
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${userToken}`,
+                    },
+                },
+            );
+            setVoiceText(response.data.description);
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
 
     // const activateVoice = async () => {
@@ -48,6 +69,7 @@ export const Dashboard = () => {
     const handleTextVoiceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setVoiceText(event.target.value);
     };
+
 
 
     const createChat = () =>
@@ -111,14 +133,9 @@ export const Dashboard = () => {
                     onChange={handleTextVoiceChange}
                 />
 
-                <button className="py-3 px-4 border border-accent-green rounded-lg max-w-fit text-main-black-inactive">
+                <button className="py-3 px-4 border border-accent-green rounded-lg max-w-fit text-main-black-inactive" onClick={updateProfile}>
                     Сохранить
                 </button>
-                <Link
-                    to={`/conversation/${conversationData?.conversation.conversation_id}/?access_token=${conversationData?.guest_token}`}
-                >
-                    asd
-                </Link>
 
             </div>
         </div>
