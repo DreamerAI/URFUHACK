@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Icon } from "../../shared/components/Icons";
-import { env } from "../../../env";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { RootState } from "../../state/store";
