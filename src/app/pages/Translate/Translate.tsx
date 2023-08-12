@@ -62,7 +62,7 @@ export const Translate = () => {
             mediaRecorderRef.current.stop();
             setIsRecording(false);
 
-            const recordedBlob = new Blob(recordedChunksRef.current, { type: "video/webm" });
+            const recordedBlob = new Blob(recordedChunksRef.current, { type: "video/mp4" });
             sendVideoToAPI(recordedBlob);
         }
     };

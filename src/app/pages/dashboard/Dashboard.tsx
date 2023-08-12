@@ -12,6 +12,7 @@ export const Dashboard = () => {
     const [voiceText, setVoiceText] = useState("");
     const [conversationData, setConversationData] = useState<ConversationModel | null>(null);
 
+
     const [qrCode, setQrCode] = useState("");
 
     const userToken = useSelector((state: RootState) => state.userSlice.accessToken);
