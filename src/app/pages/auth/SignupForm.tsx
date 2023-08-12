@@ -6,7 +6,6 @@ import { AuthService } from "../../@api/services/auth.service";
 import { setIsAuth, setUser, setUserToken } from "../../state/reducers";
 import { UserService } from "../../@api/services/user.service";
 
-
 export const SignupForm = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -19,10 +18,16 @@ export const SignupForm = () => {
         last_access: new Date(Date.now()),
     });
 
+    const [passwordError, setPasswordError] = React.useState("");
+
     const handleChange = ({ target: { name, value } }: React.ChangeEvent<HTMLInputElement>) =>
         setFormState((prev) => ({ ...prev, [name]: value }));
 
     const handleSignup = () => {
+        if (!validatePassword()) {
+            return; // Stop signup if password validation fails
+        }
+
         AuthService.create(formState)
             .then((res) => {
                 if (res?.data?.access_token) {
@@ -45,6 +50,18 @@ export const SignupForm = () => {
             });
     };
 
+    const validatePassword = () => {
+        const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+
+        if (!passwordRegex.test(formState.password)) {
+            setPasswordError("Пароль должен содержать не менее 8 символов и содержать как минимум одну заглавную букву и одну цифру.");
+            return false;
+        } else {
+            setPasswordError("");
+            return true;
+        }
+    };
+
     return (
         <div className="w-full flex flex-col gap-3">
             <input
@@ -61,6 +78,7 @@ export const SignupForm = () => {
                 placeholder="Введите email"
                 onChange={handleChange}
             />
+
             <input
                 className="border rounded-lg px-4 py-3 bg-main-gray"
                 name="password"
@@ -68,6 +86,7 @@ export const SignupForm = () => {
                 placeholder="Введите пароль"
                 onChange={handleChange}
             />
+            {passwordError && <div>{passwordError}</div>}
 
             <button className="py-3 bg-accent-green" onClick={handleSignup}>
                 Регистрация
