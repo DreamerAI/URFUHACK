@@ -8,10 +8,10 @@ export default {
         'main-white': '#ffffff',
         'main-gray': '#F0F1F5',
         'main-black-inactive': '#1e1e1e99',
-
+        'main-red': '#F91A1A',
         'main-stroke': '#1e1e1e1f',
         'accent-fuchsia': '#D409A7',
-        'accent-purple': '#783FED',
+        'green-light': '#8fc95b29',
         'accent-ochra': '#CC9300',
         'accent-aqua': '#13B79A',
         'accent-ametist': '#8A03DC',

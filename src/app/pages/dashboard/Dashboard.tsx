@@ -37,40 +37,9 @@ export const Dashboard = () => {
         }
     };
 
-
-    // const activateVoice = async () => {
-    //     try {
-    //         const token = env.SBER_API;
-
-    //         const response = await fetch('https://smartspeech.sber.ru/rest/v1/text:synthesize?format=wav16&voice=Nec_24000', {
-    //             method: 'POST',
-    //             body: JSON.stringify({ text: voiceText }),
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //                 'Authorization': token,
-    //             },
-    //         });
-
-    //         if (!response.ok) {
-    //             throw new Error('Failed to generate voice');
-    //         }
-
-    //         const blob = await response.blob();
-    //         const audioUrl = URL.createObjectURL(blob);
-
-    //         const audioElement = new Audio(audioUrl);
-    //         audioElement.play();
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // };
-
-
     const handleTextVoiceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setVoiceText(event.target.value);
     };
-
-
 
     const createChat = () =>
         axios.post('http://larek.itatmisis.ru:4000/conversation/create', null, {
@@ -98,17 +67,15 @@ export const Dashboard = () => {
 
     return (
         <div className="flex flex-col gap-4">
-            <div>
-                <span>Отсканируй меня для начала чата!</span>
-                <img src="" alt="" />
-            </div>
-            <div className="flex items-center flex-col gap-9">
+            <h2 className="text-h3">{user?.fio}</h2>
+            <div className="flex items-center justify-center gap-9 bg-green-light p-4 border-2 border-accent-green rounded-lg">
                 {qrCode ? <QRCode size={150} value={qrCode} className="flex" /> : <div onClick={async () => await createQrCode()} className="flex justify-center items-center w-36 h-36 bg-gray-300">
                     <span>Нажмите чтобы создать QR-приглашение</span>
                 </div>
                 }
-                {qrCode ? <div>
-                    <Link className="py-3 px-4 border border-accent-green rounded-lg max-w-fit text-main-black-inactive"
+                {qrCode ? <div className="flex flex-col items-center gap-4">
+                    <span>Отсканируй меня для начала чата!</span>
+                    <Link className=" bg-main-white py-3 px-4 border border-accent-green rounded-lg max-w-fit text-main-black-inactive"
                         to={`/conversation/${conversationData?.conversation.conversation_id}/`}
                     >Перейти в чат</Link></div> : null}
             </div>
@@ -125,13 +92,14 @@ export const Dashboard = () => {
                     </button>
                 </div>
                 <input
-                    className="border rounded-lg px-4 py-3 bg-main-gray h-36"
+                    className="border rounded-lg px-4 py-16 bg-main-gray"
                     name="email"
                     type="text"
                     placeholder="Введите описание"
                     value={voiceText}
                     onChange={handleTextVoiceChange}
                 />
+
 
                 <button className="py-3 px-4 border border-accent-green rounded-lg max-w-fit text-main-black-inactive" onClick={updateProfile}>
                     Сохранить

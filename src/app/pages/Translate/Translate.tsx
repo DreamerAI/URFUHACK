@@ -23,7 +23,7 @@ export const Translate = () => {
                         'Content-Type': 'multipart/form-data',
                     },
                     params: {
-                        gpt: includeGpt, // Use includeGpt state value
+                        gpt: includeGpt,
                     },
                 });
                 setAnswer(response.data.data)
@@ -35,15 +35,15 @@ export const Translate = () => {
     };
 
     const handleCheckboxChange = () => {
-        setIncludeGpt(!includeGpt); // Toggle includeGpt state
+        setIncludeGpt(!includeGpt);
     };
 
     return (
         <div>
             <div className="p-4 flex flex-col justify-center items-center gap-8">
                 <input type="file" onChange={handleFileChange} />
-                <label>
-                    GPT:
+                <label className='flex gap-3'>
+                    Обработка GPT:
                     <input type="checkbox" checked={includeGpt} onChange={handleCheckboxChange} />
                 </label>
                 <button
