@@ -41,8 +41,16 @@ export const Conversation = () => {
         getCurrentUser(accessToken);
         // @ts-ignore
         getConversation(accessToken, id);
-    }, [id, userToken]);
 
+        const intervalId = setInterval(() => {
+            // @ts-ignore
+            getConversation(accessToken, id);
+        }, 2000);
+
+        return () => {
+            clearInterval(intervalId);
+        };
+    }, [id, userToken]);
 
     const sendMessage = async () => {
         try {
@@ -63,6 +71,7 @@ export const Conversation = () => {
     const handleNewMessage = (event: React.ChangeEvent<HTMLInputElement>) => {
         setNewMessage(event.target.value);
     };
+
 
 
 

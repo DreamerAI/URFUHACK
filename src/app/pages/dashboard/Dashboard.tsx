@@ -54,7 +54,7 @@ export const Dashboard = () => {
             setConversationData(response.data);
             console.log("Чат создан");
             console.log(response.data.guest_token);
-            const url = `http://localhost:5173/conversation/${response.data.conversation.conversation_id}/?access_token=${response.data.guest_token}`;
+            const url = `http://localhost:3000/conversation/${response.data.conversation.conversation_id}/?access_token=${response.data.guest_token}`;
             setQrCode(url);
             console.log(url);
             return url;
