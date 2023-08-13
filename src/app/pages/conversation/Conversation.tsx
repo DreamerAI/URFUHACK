@@ -68,8 +68,8 @@ export const Conversation = () => {
 
     return (
         <>
-            <div className="w-full flex flex-col justify-between ">
-                <div className="flex flex-col gap-2 overflow-y-scroll">
+            <div className="flex flex-col justify-between overflow-y-scroll h-screen">
+                <div className="flex flex-col gap-2">
                     {conversationData?.messages.map((message, index) => (
                         <div
                             className={`flex ${currentUser?.id === message.sender_id ? 'justify-end' : 'justify-start'
@@ -88,25 +88,24 @@ export const Conversation = () => {
                     ))}
                 </div>
 
-                <div className="bg-main-white rounded-lg mt-3 ">
-                    <div className="flex items-center p-2">
-                        <input
-                            className="bg-gray-200 p-2 rounded-l-lg w-full"
-                            type="text"
-                            placeholder="Текст"
-                            value={newMessage}
-                            onChange={handleNewMessage}
-                        />
-                        <button
-                            className="text-white p-2 rounded-r-lg ml-2"
-                            type="submit"
-                            onClick={sendMessage}
-                        >
-                            <Icon iconName="send" />
-                        </button>
-                    </div>
+                <div className="flex items-center p-2 bg-main-white rounded-lg mt-3 bottom-0 sticky">
+                    <input
+                        className="bg-gray-200 p-2 rounded-l-lg w-full"
+                        type="text"
+                        placeholder="Текст"
+                        value={newMessage}
+                        onChange={handleNewMessage}
+                    />
+                    <button
+                        className="text-white p-2 rounded-r-lg ml-2"
+                        type="submit"
+                        onClick={sendMessage}
+                    >
+                        <Icon iconName="send" />
+                    </button>
                 </div>
             </div>
+
 
 
         </>
