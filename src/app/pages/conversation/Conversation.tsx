@@ -68,8 +68,8 @@ export const Conversation = () => {
 
     return (
         <>
-            <div className="relative h-full w-full flex flex-col items-stretch flex-1">
-                <div className="flex flex-col gap-2 overflow-y-auto flex-grow">
+            <div className="w-full flex flex-col justify-between ">
+                <div className="flex flex-col gap-2 overflow-y-scroll">
                     {conversationData?.messages.map((message, index) => (
                         <div
                             className={`flex ${currentUser?.id === message.sender_id ? 'justify-end' : 'justify-start'
@@ -80,25 +80,25 @@ export const Conversation = () => {
                                 className={`py-2 px-4 ${currentUser?.id === message.sender_id
                                     ? 'bg-accent-green float-right'
                                     : 'bg-white shadow-main-black-inactive'
-                                    } w-max-w-fit w-2/5 rounded-tl-lg rounded-br-lg rounded-bl-sm`}
+                                    } w-2/5 rounded-tl-lg rounded-br-lg rounded-bl-sm`}
                             >
-                                <span className="whitespace-normal !important">{message.content}</span>
+                                <span className="whitespace-normal">{message.content}</span>
                             </div>
                         </div>
                     ))}
                 </div>
 
-                <div className="w-full border-t md:border-t-0 md:border-transparent md:bg-vert-light-gradient bg-main-white rounded-lg mt-3">
+                <div className="bg-main-white rounded-lg mt-3 ">
                     <div className="flex items-center p-2">
                         <input
-                            className="flex-grow bg-gray-200 p-2 rounded-l-lg"
+                            className="bg-gray-200 p-2 rounded-l-lg w-full"
                             type="text"
                             placeholder="Текст"
                             value={newMessage}
                             onChange={handleNewMessage}
                         />
                         <button
-                            className=" text-white p-2 rounded-r-lg ml-2"
+                            className="text-white p-2 rounded-r-lg ml-2"
                             type="submit"
                             onClick={sendMessage}
                         >

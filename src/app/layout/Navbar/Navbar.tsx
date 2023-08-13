@@ -9,7 +9,7 @@ export const Navbar = () => {
     };
 
     return (
-        <nav className="sticky top-0 z-10 mb-10">
+        <nav className=" top-0 z-10 mb-10">
             <div className="flex place-content-end md:hidden">
                 <button onClick={handleToggle}>
                     <svg
