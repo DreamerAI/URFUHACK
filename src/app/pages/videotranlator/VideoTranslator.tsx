@@ -12,17 +12,21 @@ export const VideoTranslator = () => {
 
     const handleStartCaptureClick = React.useCallback(() => {
         setCapturing(true);
+        //@ts-ignore
         mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream, {
             mimeType: "video/webm"
         });
+        //@ts-ignore
         mediaRecorderRef.current.addEventListener(
             "dataavailable",
             handleDataAvailable
         );
+        //@ts-ignore
         mediaRecorderRef.current.start();
     }, [webcamRef, setCapturing, mediaRecorderRef]);
 
     const handleDataAvailable = React.useCallback(
+        //@ts-ignore
         ({ data }) => {
             if (data.size > 0) {
                 setRecordedChunks((prev) => prev.concat(data));
@@ -65,6 +69,7 @@ export const VideoTranslator = () => {
 
 
     const handleStopCaptureClick = React.useCallback(() => {
+        //@ts-ignore
         mediaRecorderRef.current.stop();
         setCapturing(false);
     }, [mediaRecorderRef, webcamRef, setCapturing]);
@@ -77,6 +82,7 @@ export const VideoTranslator = () => {
             const url = URL.createObjectURL(blob);
             const a = document.createElement("a");
             document.body.appendChild(a);
+            //@ts-ignore
             a.style = "display: none";
             a.href = url;
             a.download = "react-webcam-stream-capture.webm";
@@ -122,9 +128,10 @@ export const VideoTranslator = () => {
                     </div>
 
                     <div className="bg-main-white rounded-lg mt-5 p-5 shadow-main-black-inactive">
-                        {gpt ? <span>{responseData?.data}</span> : responseData && responseData.data && [responseData.data].map((item, index) => {
-                            return <span key={index}>{item}</span>;
-                        })}
+                        { // @ts-ignore
+                            gpt ? <span>{responseData?.data}</span> : responseData && responseData.data && [responseData.data].map((item, index) => {
+                                return <span key={index}>{item}</span>;
+                            })}
 
                     </div>
 

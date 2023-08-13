@@ -1,5 +1,5 @@
 // src/components/DictionaryApp.tsx
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { RootState } from '../../state/store';

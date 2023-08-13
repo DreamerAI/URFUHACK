@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 
 export const Translate = () => {
@@ -6,6 +6,7 @@ export const Translate = () => {
     const [answer, setAnswer] = useState([]);
     const [includeGpt, setIncludeGpt] = useState(false); // Add includeGpt state
 
+    //@ts-ignore
     const handleFileChange = (event) => {
         if (event.target.files && event.target.files.length > 0) {
             setSelectedFile(event.target.files[0]);
